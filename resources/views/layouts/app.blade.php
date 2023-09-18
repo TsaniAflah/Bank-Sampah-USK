@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tailwind Blog Template</title>
+    <title>Bank Sampah USK</title>
     <meta name="author" content="">
     <meta name="description" content="">
 
@@ -21,18 +20,19 @@
     <!-- AlpineJS -->
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <!-- Font Awesome -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
+            integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
 </head>
-<body class="bg-white font-family-karla">
+<body class="bg-gray-50 font-family-karla">
 
 
 <!-- Text Header -->
 <header class="w-full container mx-auto">
     <div class="flex flex-col items-center py-12">
-        <a class="font-bold text-gray-800 uppercase hover:text-gray-700 text-5xl" href="#">
+        <a class="font-bold text-green-800 uppercase hover:text-gray-700 text-5xl" href="{{route('home')}}">
             Bank Sampah USK
         </a>
-        <p class="text-lg text-gray-600">
+        <p class="text-lg text-grey-700 mt-4">
             {{\App\Models\TextWidget::getTitle('header')}}
         </p>
     </div>
@@ -50,11 +50,13 @@
         </a>
     </div>
     <div :class="open ? 'block': 'hidden'" class="w-full flex-grow sm:flex sm:items-center sm:w-auto">
-        <div class="w-full container mx-auto flex flex-col sm:flex-row items-center justify-center text-sm font-bold uppercase mt-0 px-6 py-2">
-            <a href="#" class="hover:bg-green-600 hover:text-white rounded py-2 px-4 mx-2">Home</a>
-            <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Automotive</a>
-            <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Finance</a>
-            <a href="#" class="hover:bg-green-600 hover:text-white rounded py-2 px-4 mx-2">About us</a>
+        <div
+            class="w-full container mx-auto flex flex-col sm:flex-row items-center justify-center text-sm font-bold uppercase mt-0 px-6 py-2">
+            <a href="{{route('home')}}" class="hover:bg-green-800 hover:text-white rounded py-2 px-4 mx-2">Home</a>
+            <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Nasabah</a>
+            <a href="/admin" class="hover:bg-green-800 hover:text-white rounded py-2 px-4 mx-2">Admin</a>
+            <a href="{{route('about-us')}}" class="hover:bg-green-800 hover:text-white rounded py-2 px-4 mx-2">About
+                us</a>
         </div>
     </div>
 </nav>
@@ -66,11 +68,57 @@
 
 </div>
 
-<footer class="w-full border-t bg-white pb-12">
-    <div class="w-full container mx-auto flex flex-col items-center">
-        <div class="uppercase py-6">&copy; myblog.com</div>
+<footer class="bg-white dark:bg-gray-900">
+    <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+        <div class="md:flex md:justify-between">
+            <a class="flex items-center sm:justify-between">
+                <img src="./img/logo.png" class="h-24 mr-3 mb-3" alt="Bank Sampah USK" />
+                <span class="self-center text-xl font-semibold whitespace-nowrap text-green-800 ">Bank Sampah USK</span>
+            </a>
+            <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3 md:grid-cols-2 md:gap-0 md:ml-auto">
+                <div class="mr-4">
+                    <h2 class="text-sm font-semibold text-green-800 uppercase dark:text-white">Mitra</h2>
+                    <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                        <li>
+                            <a href="https://www.menlhk.go.id/" class="hover:underline">KLHK</a>
+                        </li>
+                        <li>
+                            <a href="https://portal.pln.co.id/" class="hover:underline">PLN Aceh</a>
+                        </li>
+                        <li>
+                            <a href="https://www.aprilasia.com/id/" class="hover:underline">PT RAPP - APRIL Group</a>
+                        </li>
+                        <li>
+                            <a href="https://www.pnm.co.id/" class="hover:underline">Permodalan Nasional Madani</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="ml-4">
+                    <h2 class="text-sm font-semibold text-green-800 uppercase dark:text-white">Media Sosial</h2>
+                    <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                        <li>
+                            <a href="https://www.instagram.com/banksampah.usk/" class="hover:underline ">Instagram</a>
+                        </li>
+                        <li>
+                            <a href="https://api.whatsapp.com/send?phone=6282340980991" class="hover:underline">WhatsApp</a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/channel/UCeGuTUQOSIXt6XHR6sIoDCA" class="hover:underline">YouTube</a>
+                        </li>
+                        <li>
+                            <a href="mailto:banksampah@usk.ac.id" class="hover:underline">Email</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8"/>
+        <div class="sm:flex sm:items-center sm:justify-between">
+            <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 Bank Sampah USK. All Rights Reserved.</span>
+        </div>
     </div>
 </footer>
+
 
 </body>
 </html>
