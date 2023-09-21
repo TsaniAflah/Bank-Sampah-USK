@@ -7,9 +7,9 @@ use App\Filament\Resources\CategoryResource\RelationManagers;
 use App\Models\Category;
 use Closure;
 use Filament\Forms;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
+use Filament\Tables\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -19,7 +19,7 @@ class CategoryResource extends Resource
 {
     protected static ?string $model = Category::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     protected static ?string $navigationGroup = 'Post';
 
@@ -31,7 +31,7 @@ class CategoryResource extends Resource
                     ->required()
                     ->maxLength(2048)
                     ->reactive()
-                    ->afterStateUpdated(function (Closure $set, $state) {
+                    ->afterStateUpdated(function (\Filament\Forms\Set $set, $state) {
                         $set('slug', Str::slug($state));
                     }),
                 Forms\Components\TextInput::make('slug')

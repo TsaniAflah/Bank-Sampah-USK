@@ -7,9 +7,9 @@ use App\Filament\Resources\PostResource\RelationManagers;
 use App\Models\Post;
 use Closure;
 use Filament\Forms;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
+use Filament\Tables\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -35,7 +35,7 @@ class PostResource extends Resource
                                     ->required()
                                     ->maxLength(2048)
                                     ->reactive()
-                                    ->afterStateUpdated(function (Closure $set, $state) {
+                                    ->afterStateUpdated(function (\Filament\Forms\Set $set, $state) {
                                         $set('slug', Str::slug($state));
                                     }),
                                 Forms\Components\TextInput::make('slug')
