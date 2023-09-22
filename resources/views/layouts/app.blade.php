@@ -53,7 +53,7 @@
         <div
             class="w-full container mx-auto flex flex-col sm:flex-row items-center justify-center text-sm font-bold uppercase mt-0 px-6 py-2">
             <a href="{{route('home')}}" class="hover:bg-green-800 hover:text-white rounded py-2 px-4 mx-2">Home</a>
-            <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Nasabah</a>
+            <a href="/user" class="hover:bg-green-800 hover:text-white rounded py-2 px-4 mx-2">Nasabah</a>
             <a href="/admin" class="hover:bg-green-800 hover:text-white rounded py-2 px-4 mx-2">Admin</a>
             <a href="{{route('about-us')}}" class="hover:bg-green-800 hover:text-white rounded py-2 px-4 mx-2">About
                 us</a>
@@ -73,7 +73,6 @@
         <div class="md:flex md:justify-between">
             <a class="flex items-center sm:justify-between">
                 <img src="./img/logo.png" class="h-24 mr-3 mb-3" alt="Bank Sampah USK" />
-                <span class="self-center text-xl font-semibold whitespace-nowrap text-green-800 ">Bank Sampah USK</span>
             </a>
             <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3 md:grid-cols-2 md:gap-0 md:ml-auto">
                 <div class="mr-4">
