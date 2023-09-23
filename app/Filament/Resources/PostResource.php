@@ -32,6 +32,7 @@ class PostResource extends Resource
                         Forms\Components\Grid::make(2)
                             ->schema([
                                 Forms\Components\TextInput::make('title')
+                                    ->label('Judul')
                                     ->required()
                                     ->maxLength(2048)
                                     ->reactive()
@@ -44,22 +45,27 @@ class PostResource extends Resource
                             ])
                         ,
                         Forms\Components\RichEditor::make('body')
+                            ->label('Konten')
                             ->required(),
                         Forms\Components\Toggle::make('active')
+                            ->label('Tampilkan')
                             ->required(),
-                        Forms\Components\DateTimePicker::make('published_at'),
+                        Forms\Components\DateTimePicker::make('published_at')
+                            ->label('Dibuat pada'),
                     ])->columnSpan(8),
 
                 Forms\Components\Card::make()
                     ->schema([
-                        Forms\Components\FileUpload::make('thumbnail'),
+                        Forms\Components\FileUpload::make('thumbnail')
+                        ->label('Sampul')
+                        ->image(),
                         Forms\Components\Select::make('category_id')
                             ->multiple()
                             ->relationship('categories', 'title')
                             ->required(),
                     ])->columnSpan(4)
 
-                    ])->columns(12);
+            ])->columns(12);
     }
 
     public static function table(Table $table): Table

@@ -17,7 +17,7 @@ class TextWidgetResource extends Resource
 {
     protected static ?string $model = TextWidget::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-adjustments-horizontal';
 
     protected static ?string $navigationGroup = 'Tampilan Web';
 
@@ -28,12 +28,16 @@ class TextWidgetResource extends Resource
                 Forms\Components\TextInput::make('key')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\FileUpload::make('image'),
+                Forms\Components\FileUpload::make('image')
+                    ->label('Gambar'),
                 Forms\Components\TextInput::make('title')
+                    ->label('Judul')
                     ->required()
                     ->maxLength(2048),
-                Forms\Components\RichEditor::make('content'),
+                Forms\Components\RichEditor::make('content')
+                    ->label('Konten'),
                 Forms\Components\Toggle::make('active')
+                    ->label('Tampilkan')
                     ->required(),
             ])->columns(1);
     }
