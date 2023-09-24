@@ -17,8 +17,7 @@ return new class extends Migration
                 ->constrained('nasabahs')
                 ->cascadeOnDelete();
             $table->string('number')->unique();
-            $table->decimal('total_weight', 10, 2);
-            $table->decimal('total_income');
+
             $table->longText('notes')->nullable();
             $table->softDeletes();
             $table->timestamps();

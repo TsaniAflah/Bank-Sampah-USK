@@ -13,7 +13,7 @@ class Setoran extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'nasabah_id', 'number', 'total_weight', 'total_income', 'notes'
+        'nasabah_id', 'number', 'notes'
     ];
 
     public function nasabah(): BelongsTo{

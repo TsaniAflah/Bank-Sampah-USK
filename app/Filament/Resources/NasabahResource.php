@@ -17,6 +17,8 @@ class NasabahResource extends Resource
 {
     protected static ?string $model = Nasabah::class;
 
+    protected static ?string $navigationLabel = 'Nasabah';
+
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
     protected static ?string $navigationGroup = 'Setoran Sampah';

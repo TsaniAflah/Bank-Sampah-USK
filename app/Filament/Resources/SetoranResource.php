@@ -18,6 +18,8 @@ class SetoranResource extends Resource
 {
     protected static ?string $model = Setoran::class;
 
+    protected static ?string $navigationLabel = 'Setoran';
+
     protected static ?string $navigationIcon = 'heroicon-o-archive-box-arrow-down';
 
     protected static ?string $navigationGroup = 'Setoran Sampah';
@@ -48,32 +50,45 @@ class SetoranResource extends Resource
                     Forms\Components\Wizard\Step::make('Setoran')
                         ->schema([
                             Forms\Components\Repeater::make('items')
-                            ->relationship()
-                            ->schema([
-                                Forms\Components\Select::make('jenis_sampah_id')
-                                    ->label('Jenis sampah')
-                                    ->options(JenisSampah::query()->pluck('name', 'id'))
-                                    ->required()
-                                    ->reactive()
-                                    ->afterStateUpdated(fn($state, Forms\Set $set) =>
-                                    $set('unit_price', JenisSampah::find($state)?->price ?? 0)),
+                                ->relationship()
+                                ->schema([
+                                    Forms\Components\Select::make('jenis_sampah_id')
+                                        ->label('Jenis Sampah')
+                                        ->options(JenisSampah::query()->pluck('name', 'id'))
+                                        ->required()
+                                        ->reactive()
+                                        ->afterStateUpdated(fn($state, Forms\Set $set) => $set('unit_price', JenisSampah::find($state)?->price ?? 0)),
 
-                                Forms\Components\TextInput::make('total_weight')
-                                    ->label('Total Berat')
-                                    ->numeric()
-                                    ->required(),
+                                    Forms\Components\TextInput::make('quantity')
+                                        ->label('Total Berat')
+                                        ->numeric()
+                                        ->live()
+                                        ->dehydrated()
+                                        ->rules('regex:/^\d{1,6}(\.\d{0,2})?$/')
+                                        ->required()
+                                        ->reactive()
+                                        ->afterStateUpdated(function (\Filament\Forms\Set $set, $state, $get) {
+                                            $set('total_income', ($state * $get('unit_price')));
+                                        }),
 
-                                Forms\Components\TextInput::make('unit_price')
-                                    ->label('Harga satuan')
-                                    ->numeric()
-                                    ->required(),
+                                    Forms\Components\TextInput::make('unit_price')
+                                        ->label('Harga Satuan')
+                                        ->numeric()
+                                        ->required(),
 
-                                Forms\Components\Placeholder::make('total_income')
-                                    ->label('Total pendapatan')
-                                    ->content(function ($get) {
-                                        return $get('total_weight') * $get('unit_price');
-                                    })
-                            ])->columns(4)
+//                                    Forms\Components\Placeholder::make('total_income')
+//                                        ->label('Total Pendapatan')
+//                                        ->content(function ($get) {
+//                                            $quantity = floatval($get('quantity'));
+//                                            $unitPrice = floatval($get('unit_price'));
+//                                            return $quantity * $unitPrice;
+//                                        }),
+
+                                    Forms\Components\TextInput::make('total_income')
+                                        ->label('Total Pendapatan')
+                                    ->disabled()
+
+                                ])->columns(4)
                         ])
 
                 ])->columnSpanFull()
@@ -93,21 +108,9 @@ class SetoranResource extends Resource
                     ->sortable()
                     ->toggleable(),
 
-                Tables\Columns\TextColumn::make('total_weight')
-                    ->searchable()
-                    ->sortable()
-                    ->summarize([
-                        Tables\Columns\Summarizers\Sum::make()
-                    ]),
+                Tables\Columns\TextColumn::make('notes'),
 
-                Tables\Columns\TextColumn::make('total_income')
-                    ->searchable()
-                    ->sortable()
-                    ->summarize([
-                        Tables\Columns\Summarizers\Sum::make()
-                            ->money()
-                    ]),
-
+                //Tables\Columns\TextColumn::make('total_weight'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Tanggal setor')
                     ->date()
