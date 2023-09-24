@@ -11,6 +11,7 @@ use Filament\Widgets\StatsOverviewWidget\Stat;
 class StatsOverview extends BaseWidget
 {
 
+    protected static ?int $sort = 3;
     protected static ?string $pollingInterval = '15s';
     protected static bool $isLazy = true;
 
@@ -28,7 +29,7 @@ class StatsOverview extends BaseWidget
             Stat::make('Total Jenis Sampah', JenisSampah::count())
                 ->description('Pertambahan nasabah')
                 ->descriptionIcon('heroicon-m-arrow-trending-up')
-                ->color('success')
+                ->color('warning')
                 ->chart([6, 2, 4, 8, 4, 6, 8]),
 
             Stat::make('Total Berat Sampah', $totalQuantity)
