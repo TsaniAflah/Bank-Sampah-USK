@@ -17,7 +17,6 @@ return new class extends Migration
                 ->constrained('nasabahs')
                 ->cascadeOnDelete();
             $table->string('number')->unique();
-
             $table->longText('notes')->nullable();
             $table->softDeletes();
             $table->timestamps();

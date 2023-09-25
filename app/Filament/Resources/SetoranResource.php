@@ -86,7 +86,7 @@ class SetoranResource extends Resource
 
                                     Forms\Components\TextInput::make('total_income')
                                         ->label('Total Pendapatan')
-                                    ->disabled()
+                                        ->disabled()
 
                                 ])->columns(4)
                         ])
@@ -100,6 +100,7 @@ class SetoranResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('number')
+                    ->label('Kode')
                     ->searchable()
                     ->sortable(),
 
@@ -108,7 +109,8 @@ class SetoranResource extends Resource
                     ->sortable()
                     ->toggleable(),
 
-                //Tables\Columns\TextColumn::make('notes'),
+                Tables\Columns\TextColumn::make('total_income')
+                ->label('Pendapatan'),
 
                 //Tables\Columns\TextColumn::make('total_weight'),
                 Tables\Columns\TextColumn::make('created_at')
@@ -121,7 +123,6 @@ class SetoranResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\ActionGroup::make([
-
                     Tables\Actions\EditAction::make(),
                     Tables\Actions\DeleteAction::make()
                 ])
