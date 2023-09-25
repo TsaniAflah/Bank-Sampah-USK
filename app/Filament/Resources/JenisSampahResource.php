@@ -36,7 +36,7 @@ class JenisSampahResource extends Resource
                                 Forms\Components\TextInput::make('name')
                                     ->label('Jenis sampah')
                                     ->required()
-                                    ->live(onBlur: true)
+                                    ->live()
                                     ->reactive()
                                     ->afterStateUpdated(function (\Filament\Forms\Set $set, $state) {
                                         $set('slug', Str::slug($state));

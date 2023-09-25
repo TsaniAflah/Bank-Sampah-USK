@@ -21,10 +21,10 @@ class StatsOverview extends BaseWidget
 
         return [
             Stat::make('Total Nasabah', Nasabah::count())
-            ->description('Pertambahan nasabah')
-            ->descriptionIcon('heroicon-m-arrow-trending-up')
-            ->color('success')
-            ->chart([6, 2, 4, 8, 4, 6, 8]),
+            //->description('Pertambahan nasabah')
+            //->descriptionIcon('heroicon-m-arrow-trending-up')
+            ->color('success'),
+            //->chart([6, 2, 4, 8, 4, 6, 8]),
 
             Stat::make('Total Jenis Sampah', JenisSampah::count())
                 ->description('Pertambahan nasabah')

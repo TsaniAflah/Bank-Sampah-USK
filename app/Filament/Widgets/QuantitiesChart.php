@@ -12,8 +12,12 @@ class QuantitiesChart extends ChartWidget
 {
     protected static ?int $sort = 2;
 
-    protected static ?string $heading = 'Total Volume Sampah';
+    public function getHeading(): string
+    {
+        $currentYear = Carbon::now()->year;
 
+        return "Total Sampah BSU Tahun $currentYear";
+    }
     protected function getData(): array
     {
         $data = $this->getQuantitiesPerMonth();
@@ -21,7 +25,7 @@ class QuantitiesChart extends ChartWidget
         return [
             'datasets' => [
                 [
-                    'label' => 'Quantity',
+                    'label' => 'Per-Kilogram',
                     'data' => $data['quantitiesPerMonth']
                 ]
             ],

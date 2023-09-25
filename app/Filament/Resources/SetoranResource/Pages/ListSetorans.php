@@ -16,4 +16,5 @@ class ListSetorans extends ListRecords
             Actions\CreateAction::make()->label('+ Setoran'),
         ];
     }
+
 }
